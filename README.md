@@ -6,13 +6,15 @@ Basic implementaion of SMTP client using TCP communication with the SMTP server 
 
 ```python
 
-from sandesh import smtp
-
-client = smtp.SMTPClient(
+import sandesh_py as sandesh
+auth = {"username": SMTP_USERNAME, "password": SMTP_PASSWORD},
+options = {"notls": False}
+client = sandesh.SMTPClient(
     SMTP_HOST,
     SMTP_PORT,
-    {"username": SMTP_USERNAME, "password": SMTP_PASSWORD},
-)
+    auth,
+    options
+t
 
 client.connect()
 mail = smtp.Mail(

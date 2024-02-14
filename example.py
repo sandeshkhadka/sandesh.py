@@ -2,7 +2,7 @@ from os import environ
 
 from dotenv import load_dotenv
 
-from sandesh import smtp
+import sandesh_py as sandesh
 
 load_dotenv()
 smtp_username = environ.get("SMTP_USERNAME")
@@ -13,12 +13,22 @@ if not (smtp_username and smtp_password and smtp_host and smtp_port):
     print("No username and password found")
     exit(1)
 
-client = smtp.SMTPClient(
+client = sandesh.SMTPClient(
     smtp_host,
     int(smtp_port),
     {"username": smtp_username, "password": smtp_password},
+    # {"notls": True},
 )
 
 client.connect()
-
+mail = sandesh.Mail(
+    {
+        "mailTo": "sandeshkhadka217@gmail.com",
+        "mailFrom": "mail@khadkasandesh.com.np",
+        "subject": "TEST",
+        "body": "TEST CONTWENT",
+    }
+)
+# client.sendMail(mail)
+print(client.version())
 client.close()
