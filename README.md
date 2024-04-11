@@ -23,6 +23,11 @@ mail = smtp.Mail(
         "mailFrom": "sender@example.com",
         "subject": "Email Subject",
         "body": "Email Body",
+        "attachments": [
+        # attachment files MUST be under 20 MB
+        "path/to/attachment",
+        "path/to/attachment"
+        ]
     }
 )
 client.sendMail(mail)
@@ -34,7 +39,7 @@ client.close()
 ## ToDo List
 
 - [x] Support authentication using username and password
-- [ ] Implement SSL/TLS encryption for secure communication
-- [ ] Add support for MIME to handle attachments and alternative content types
-- [ ] Support additional authentication mechanisms such as OAuth or API keys
+- [x] Implement SSL/TLS encryption for secure communication
+- [x] Add support for MIME to handle attachments and alternative content types
+- [ ] Support Oath and API authentication
 - [ ] Connection Pooling and Asynchronous Delivery
