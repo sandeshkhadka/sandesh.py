@@ -1,25 +1,9 @@
 import base64
 import socket
 import ssl
-from typing import NotRequired, TypedDict
 
-
-class SMTPOptions(TypedDict):
-    tlsOlder: NotRequired[bool]
-    notls: NotRequired[bool]
-    disableHostValidation: NotRequired[bool]
-
-
-class SMTPAuth(TypedDict):
-    username: str
-    password: str
-
-
-class Mail(TypedDict):
-    mailTo: str
-    mailFrom: str
-    subject: str
-    body: str
+from .mailer import createDataQueue
+from .types import Mail, SMTPAuth, SMTPOptions
 
 
 class SMTPClient:
@@ -88,16 +72,10 @@ class SMTPClient:
         if not self.__loggedIn:
             self.__login()
 
-        text = mail.get("body").encode("utf-8")
-        mailTo = mail.get("mailTo").encode("utf-8")
-        mailFrom = mail.get("mailFrom").encode("utf-8")
-        subject = mail.get("subject").encode("utf-8")
-        self.__send(b"MAIL FROM: <" + mailFrom + b">")
-        self.__send(b"RCPT TO: <" + mailTo + b">")
-        self.__send(b"DATA")
-        self.__send(b"Subject: " + subject, noWait=True)
-        self.__send(b"", noWait=True)
-        self.__send(text, noWait=True)
+        dataQueue = createDataQueue(mail)
+        for data in dataQueue:
+            self.__send(data.get("data"), noWait=data.get("noWait"))
+
         return repr(self.__send(b"."))
 
     def version(self):

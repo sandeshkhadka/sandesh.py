@@ -1,9 +1,6 @@
 from os import environ
-
 from dotenv import load_dotenv
-
 import sandesh_py as sandesh
-
 load_dotenv()
 smtp_username = environ.get("SMTP_USERNAME")
 smtp_password = environ.get("SMTP_PASSWORD")
@@ -23,12 +20,12 @@ client = sandesh.SMTPClient(
 client.connect()
 mail = sandesh.Mail(
     {
-        "mailTo": "sandeshkhadka217@gmail.com",
-        "mailFrom": "mail@khadkasandesh.com.np",
-        "subject": "TEST",
-        "body": "TEST CONTWENT",
+        "mailTo": "destination@email.com",
+        "mailFrom": "sender@email.com",
+        "subject": "Example Email",
+        "body": "This is demonstartaion of use of sandesh_py package",
+        "attachment": ["path/to/attachment"],
     }
 )
-# client.sendMail(mail)
-print(client.version())
+print(client.sendMail(mail))
 client.close()
