@@ -40,8 +40,6 @@ client.close()
 
 ## ToDo List
 
-- [x] Support authentication using username and password
-- [x] Implement SSL/TLS encryption for secure communication
 - [x] Add support for MIME to handle attachments and alternative content types
 - [ ] Support Oath and API authentication
 - [ ] Connection Pooling and Asynchronous Delivery
