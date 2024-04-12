@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sandesh.py"
+version = "0.0.1"
+authors = [
+  { name="Sandesh Khadka", email="mail@khadkasandesh.com.np" },
+]
+description = "Basic implementaion of SMTP client using TCP communication with the SMTP server using the `socket` module."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/sandeshkhadka/sandesh"
+Issues = "https://github.com/sandeshkhadka/sandesh/issues"
